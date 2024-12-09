@@ -3,7 +3,7 @@ import csv
 # Degree of nondeterminism -> average number of configurations that come from an average configuration
     # 1 -> deterministic; >1 -> based on degree of nondeterminism
 
-def readTM(file):
+def readTM(file): # Reads TM in CSV file format 
     with open(file, 'r') as f:
         transitions = []
         for i, line in enumerate(f):
@@ -25,56 +25,56 @@ def readTM(file):
                 transitions.append(line.strip().split(','))
         return name, states, sigma, gamma, qstart, qaccept, qreject, transitions
 
-def transition(inputs, deltas, qaccept):
+def transition(inputs, deltas, qaccept): # Takes input configuration from certain depth and outputs all possible transitions given transition function
     output = []
-    for input in inputs:
-        for delta in deltas:
+    for input in inputs: # Input configuration
+        for delta in deltas: # Transtion functions
             state = input[1]
             head = input[2][0]
             if state != 'qrej' and state == delta[0]:
                 if head == delta[1]:
-                    if delta[4] == 'R':
+                    if delta[4] == 'R': # Right transtion
                         next = [input[0]+delta[3], delta[2], input[2][1:]]
                         if next[1] == qaccept:
-                            next[1] = 'qacc'
+                            next[1] = 'qacc' # Determines if configuration accepts
                         if next[2] == '':
                             next[2] = '_'
                         output.append(next)
-                    elif delta[4] == 'L':
+                    elif delta[4] == 'L': # Left transtion
                         if delta[3] == '_':
                             prev = ''
                         else:
                             prev = delta[3]
                         next = [input[0][:len(input[0])-1], delta[2], input[0][len(input[0])-1]+prev+input[2][1:]]
                         if next[1] == qaccept:
-                            next[1] = 'qacc'
+                            next[1] = 'qacc' # Determines if configuration accepts
                         if next[2] == '':
                             next[2] = '_'
                         output.append(next)
                 else:
-                    next = [input[0]+head, 'qrej', input[2][1:]]
+                    next = [input[0]+head, 'qrej', input[2][1:]] # Outputs rejection if no transitions possible from given state
                     if next[2] == '':
                         next[2] = '_'
                     if next not in output:
                         output.append(next)
     return output
 
-def recurse(current_depth, transitions, qaccept, step, terminate=15):
-    if not current_depth or step > terminate:
+def recurse(current_depth, transitions, qaccept, step, terminate=15): # Recursively traces TM behavior
+    if not current_depth or step > terminate: # Checks output
         return []
     trace_at_depth = [current_depth]
     next_depth = transition(current_depth, transitions, qaccept)
-    if any(state[1] == 'qacc' for state in current_depth) or all(state[1] == 'qrej' for state in current_depth):
+    if any(state[1] == 'qacc' for state in current_depth) or all(state[1] == 'qrej' for state in current_depth): # Checks if accepted or rejected
         return trace_at_depth
     elif next_depth:
-        trace_at_depth += recurse(next_depth, transitions, qaccept, step=step+1, terminate=15)
+        trace_at_depth += recurse(next_depth, transitions, qaccept, step=step+1, terminate=15) # Recursive call
     return trace_at_depth
 
-def traceTM(infile, input, terminate=15):
+def traceTM(infile, input, terminate=15): # reads TM, calls recurse based on specified input string
     name, states, sigma, gamma, qstart, qaccept, qreject, transitions = readTM(infile)
-    start = ['', qstart, input]
-    start_depth = [start]
-    trace = recurse(start_depth, transitions, qaccept, step=0, terminate=terminate)
+    start = ['', qstart, input] # Start state
+    start_depth = [start] # Start configuration
+    trace = recurse(start_depth, transitions, qaccept, step=0, terminate=terminate) 
     final_states = [transition[1] for transition in trace[-1]]
     
     if 'qacc' not in final_states:
@@ -90,19 +90,17 @@ def traceTM(infile, input, terminate=15):
     total_transitions = sum([len(depth) for depth in trace[1:]])
     depth = len(trace) - 1
 
-    non_leaves = 0
+    non_leaves = 0 # Count non-leaves
     for d in trace:
         for t in d:
             if t[1] != 'qrej' and t[1] != 'qacc':
                 non_leaves += 1
     nondeterminism = round(total_transitions/non_leaves, 2)
 
-    
-
     return name, input, total_transitions, depth, nondeterminism, accepted, decided, trace 
 
 
-def output(outfile, inputs):
+def output(outfile, inputs): # Writes results of trace to file
     f = open(outfile, 'w')
     f.write(f'Name: {inputs[0]}\n')
     f.write(f'Initial string: {inputs[1]}\n')

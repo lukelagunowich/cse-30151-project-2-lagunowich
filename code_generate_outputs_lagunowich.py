@@ -1,5 +1,7 @@
 from code_traceTM_lagunowich import *
 
+# Write outputs for given machine and input to files with convention output_{machine}_{input}_lagunowich.txt
+
 o = traceTM(infile='data_a_plus_lagunowich.csv', input='aaa')
 output(outfile='output_a_plus_aaa_lagunowich.txt', inputs=o)
 
