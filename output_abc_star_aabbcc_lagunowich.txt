@@ -1,0 +1,13 @@
+Name: a*b*c* Nondeterministic
+Initial string: aabbcc
+Total transitions simulated: 37
+Nondeterminism: 1.28
+String accepted in 7 transitions.
+[['', 'q0', 'aabbcc']]
+[['a', 'q0', 'abbcc'], ['a', 'q1', 'abbcc'], ['a', 'q2', 'abbcc'], ['a', 'q3', 'abbcc'], ['a', 'qrej', 'abbcc']]
+[['aa', 'q0', 'bbcc'], ['aa', 'q1', 'bbcc'], ['aa', 'q2', 'bbcc'], ['aa', 'q3', 'bbcc'], ['aa', 'qrej', 'bbcc']]
+[['aab', 'qrej', 'bcc'], ['aab', 'q1', 'bcc'], ['aab', 'q2', 'bcc'], ['aab', 'q3', 'bcc'], ['aab', 'q1', 'bcc'], ['aab', 'q2', 'bcc'], ['aab', 'q3', 'bcc']]
+[['aabb', 'q1', 'cc'], ['aabb', 'q2', 'cc'], ['aabb', 'q3', 'cc'], ['aabb', 'qrej', 'cc'], ['aabb', 'q1', 'cc'], ['aabb', 'q2', 'cc'], ['aabb', 'q3', 'cc']]
+[['aabbc', 'qrej', 'c'], ['aabbc', 'q2', 'c'], ['aabbc', 'q3', 'c'], ['aabbc', 'q2', 'c'], ['aabbc', 'q3', 'c']]
+[['aabbcc', 'q2', '_'], ['aabbcc', 'q3', '_'], ['aabbcc', 'qrej', '_'], ['aabbcc', 'q2', '_'], ['aabbcc', 'q3', '_']]
+[['aabbcc_', 'qrej', '_'], ['aabbcc_', 'qacc', '_'], ['aabbcc_', 'qacc', '_']]

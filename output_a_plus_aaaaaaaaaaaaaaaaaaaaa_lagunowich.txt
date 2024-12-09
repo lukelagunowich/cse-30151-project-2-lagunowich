@@ -1,0 +1,5 @@
+Name: a plus
+Initial string: aaaaaaaaaaaaaaaaaaaaa
+Total transitions simulated: 44
+Nondeterminism: 1.42
+Execution stopped after 15 transitions (max depth limit).

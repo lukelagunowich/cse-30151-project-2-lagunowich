@@ -1,0 +1,19 @@
+Name: {w | w has the same number of 0's and 1's} Nondeterministic
+Initial string: 1010
+Total transitions simulated: 33
+Nondeterminism: 1.65
+String accepted in 13 transitions.
+[['', 'q0', '1010']]
+[['1', 'qrej', '010'], ['_', 'q2', '010']]
+[['_0', 'qrej', '10'], ['', 'q3', '_x10']]
+[['_', 'qrej', 'x10'], ['_', 'q4', 'x10'], ['_', 'q5', 'x10']]
+[['_x', 'qrej', '10'], ['_x', 'q4', '10'], ['_x', 'q5', '10']]
+[['_x1', 'qrej', '0'], ['_xx', 'q2', '0']]
+[['_xx0', 'qrej', '_'], ['_x', 'q3', 'xx']]
+[['_xx', 'qrej', 'x'], ['_', 'q3', 'xxx']]
+[['_x', 'qrej', 'xx'], ['', 'q3', '_xxx']]
+[['_', 'qrej', 'xxx'], ['_', 'q4', 'xxx'], ['_', 'q5', 'xxx']]
+[['_x', 'qrej', 'xx'], ['_x', 'q4', 'xx'], ['_x', 'q5', 'xx']]
+[['_xx', 'qrej', 'x'], ['_xx', 'q4', 'x'], ['_xx', 'q5', 'x']]
+[['_xxx', 'qrej', '_'], ['_xxx', 'q4', '_'], ['_xxx', 'q5', '_']]
+[['_xx', 'q3', 'x'], ['_xxx_', 'qrej', '_'], ['_xxx_', 'qacc', '_']]

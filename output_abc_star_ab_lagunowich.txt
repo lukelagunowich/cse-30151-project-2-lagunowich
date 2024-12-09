@@ -1,0 +1,9 @@
+Name: a*b*c* Nondeterministic
+Initial string: ab
+Total transitions simulated: 15
+Nondeterminism: 1.36
+String accepted in 3 transitions.
+[['', 'q0', 'ab']]
+[['a', 'q0', 'b'], ['a', 'q1', 'b'], ['a', 'q2', 'b'], ['a', 'q3', 'b'], ['a', 'qrej', 'b']]
+[['ab', 'qrej', '_'], ['ab', 'q1', '_'], ['ab', 'q2', '_'], ['ab', 'q3', '_'], ['ab', 'q1', '_'], ['ab', 'q2', '_'], ['ab', 'q3', '_']]
+[['ab_', 'qrej', '_'], ['ab_', 'qacc', '_'], ['ab_', 'qacc', '_']]

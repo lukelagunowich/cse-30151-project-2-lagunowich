@@ -1,0 +1,17 @@
+Name: {w | w has the same number of 0's and 1's} Nondeterministic
+Initial string: 0001
+Total transitions simulated: 22
+Nondeterminism: 1.83
+String string rejected in 11 transitions.
+[['', 'q0', '0001']]
+[['0', 'qrej', '001'], ['_', 'q1', '001']]
+[['_0', 'q1', '01'], ['_0', 'qrej', '01']]
+[['_00', 'q1', '1'], ['_00', 'qrej', '1']]
+[['_001', 'qrej', '_'], ['_0', 'q3', '0x']]
+[['_', 'q3', '00x'], ['_00', 'qrej', 'x']]
+[['', 'q3', '_00x'], ['_0', 'qrej', '0x']]
+[['_', 'qrej', '00x'], ['_', 'q4', '00x'], ['_', 'q5', '00x']]
+[['_0', 'qrej', '0x'], ['_x', 'q1', '0x']]
+[['_x0', 'q1', 'x'], ['_x0', 'qrej', 'x']]
+[['_x0x', 'qrej', '_'], ['_x0x', 'q1', '_']]
+[['_x0x_', 'qrej', '_']]

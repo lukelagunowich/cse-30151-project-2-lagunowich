@@ -1,0 +1,9 @@
+Name: a plus
+Initial string: aab
+Total transitions simulated: 6
+Nondeterminism: 1.2
+String string rejected in 3 transitions.
+[['', 'q1', 'aab']]
+[['a', 'q1', 'ab'], ['a', 'q2', 'ab']]
+[['aa', 'q1', 'b'], ['aa', 'q2', 'b'], ['aa', 'qrej', 'b']]
+[['aab', 'qrej', '_']]
